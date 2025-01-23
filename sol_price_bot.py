@@ -1,7 +1,6 @@
 import requests
 from telegram import Update
 from telegram.ext import Application, CommandHandler, CallbackContext
-import os
 
 # Fetch the current price of Solana in USD
 def get_sol_price():
@@ -48,6 +47,5 @@ async def main():
 
 if __name__ == "__main__":
     import asyncio
-    # Ensure we are running inside the existing event loop
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    # No need to manage the event loop manually, remove the loop.run_until_complete call.
+    asyncio.run(main())
