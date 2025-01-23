@@ -34,7 +34,7 @@ async def price(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(f"An error occurred: {e}")
 
 # Main function to run the bot
-async def main():
+def main():
     # Replace 'YOUR_API_TOKEN' with the token you received from BotFather
     application = Application.builder().token("Y8130094422:AAHILiBnzOJyohN0US6U7sCs_Nf-CGiheiA").build()
 
@@ -42,10 +42,8 @@ async def main():
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("price", price))
 
-    # Start the bot
-    await application.run_polling()
+    # Start the bot and run until interrupted
+    application.run_polling()
 
 if __name__ == "__main__":
-    import asyncio
-    # No need to manage the event loop manually, remove the loop.run_until_complete call.
-    asyncio.run(main())
+    main()
