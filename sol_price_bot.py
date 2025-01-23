@@ -1,6 +1,6 @@
 import requests
 from telegram import Update
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CommandHandler, CallbackContext
 import os
 
 # Fetch the current price of Solana in USD
@@ -11,13 +11,13 @@ def get_sol_price():
     return data["solana"]["usd"]
 
 # Command handler for the /start command
-async def start(update: Update, context) -> None:
+async def start(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text(
         "Welcome to the Solana-USD Price Bot!\nSend /price followed by the USD amount to get its value in SOL.\n\nExample:\n/price 50"
     )
 
 # Command handler for the /price command
-async def price(update: Update, context) -> None:
+async def price(update: Update, context: CallbackContext) -> None:
     try:
         # Get the amount in USD from the user's message
         usd_amount = float(context.args[0])
@@ -48,4 +48,6 @@ async def main():
 
 if __name__ == "__main__":
     import asyncio
-    asyncio.run(main())
+    # Ensure we are running inside the existing event loop
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
