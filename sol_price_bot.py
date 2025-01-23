@@ -36,7 +36,7 @@ async def price(update: Update, context: CallbackContext) -> None:
 # Main function to run the bot
 def main():
     # Replace 'YOUR_API_TOKEN' with the token you received from BotFather
-    application = Application.builder().token("Y8130094422:AAHILiBnzOJyohN0US6U7sCs_Nf-CGiheiA").build()
+    application = Application.builder().token("8130094422:AAHILiBnzOJyohN0US6U7sCs_Nf-CGiheiA").build()
 
     # Register command handlers
     application.add_handler(CommandHandler("start", start))
